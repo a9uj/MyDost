@@ -6,6 +6,38 @@
   <title>For you 🤍</title>
 
   <style>
+
+  /* ---------- MESSAGE CARD ---------- */
+
+.message-card {
+  margin-top: 18px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+}
+
+/* scrollable area */
+.message-scroll {
+  max-height: 170px;      /* height of text box */
+  overflow-y: auto;
+  padding-right: 6px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #555;
+  text-align: center;
+}
+
+/* smooth + clean scrollbar */
+.message-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.message-scroll::-webkit-scrollbar-thumb {
+  background: #ffd6d6;
+  border-radius: 10px;
+}
+  
   /* ---------- FLOATING CATS BACKGROUND ---------- */
 
 .cat-bg {
@@ -188,12 +220,27 @@
     <!-- 🔥 Put your image here -->
     <img src="DostWithCat.JPG" alt="memory">
 
+    <div class="message-card">
+
+  <div class="message-scroll">
+
     <p>
       Things got messy between us…<br><br>
+
       Maybe I messed up. Maybe I didn’t understand you enough.<br><br>
+
       But hurting you was never my intention.<br><br>
-      <b>I’m really sorry & I really wanna fix things up more maturely.</b>
+
+      I’m really sorry & I really wanna fix things up more maturely.<br><br>
+
+      (Add your longer message / poem / letter here freely ✨)
+      You can write as much as you want now. This area will scroll.
     </p>
+
+  </div>
+
+</div>
+
 
     <button class="primary" onclick="next(3)">One more thing 👉</button>
   </div>
