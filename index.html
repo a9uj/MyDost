@@ -19,9 +19,13 @@
 /* each cat */
 .cat {
   position: absolute;
-  width: 40px;
-  opacity: 0.18;
+  width: 42px;
+
+  opacity: 0.45;              /* more visible */
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15)); /* depth */
   animation: floatCat linear infinite;
+
+  pointer-events: none;
 }
 
 @keyframes floatCat {
