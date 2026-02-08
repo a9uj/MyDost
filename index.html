@@ -190,43 +190,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
   /* ---------- YES CLICK ---------- */
-  window.yesClicked = function() {
+ window.yesClicked = function() {
 
-    if (music) music.volume = 0.35;
+  if (music) music.volume = 0.35;
 
-    const duration = 1800;
-    const end = Date.now() + duration;
+  // 🎉 confetti
+  const duration = 1800;
+  const end = Date.now() + duration;
 
-    (function frame() {
-      confetti({
-        particleCount: 7,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
+  (function frame() {
+    confetti({
+      particleCount: 7,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
 
-      if (Date.now() < end) requestAnimationFrame(frame);
-    })();
+    if (Date.now() < end) requestAnimationFrame(frame);
+  })();
 
-    setTimeout(() => {
-      document.body.innerHTML = `
-        <div style="
-          height:100vh;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          flex-direction:column;
-          font-family:sans-serif;
-          background:linear-gradient(135deg,#fff8f6,#ffecec);
-          text-align:center;
-          padding:30px;
-        ">
-          <h1 style="font-size:30px;">Yayyyy 🤍✨</h1>
-          <p>I knew you’d forgive me 🥺</p>
-          <p style="opacity:.7">iMessage me when you see this 💌</p>
-        </div>
-      `;
-    }, 1500);
-  }
+  // hide all cards (DON'T delete body)
+  document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
+
+  // create final screen
+  const finalScreen = document.createElement("div");
+  finalScreen.className = "card";
+
+  finalScreen.innerHTML = `
+    <h1 style="font-size:30px;">Yayyyy 🤍✨</h1>
+    <p>I knew you’d forgive me 🥺</p>
+    <p style="opacity:.7">iMessage me when you see this 💌</p>
+    <p style="margin-top:15px;font-size:13px;opacity:.5">
+      PS: you can never say no anyway 😌
+    </p>
+  `;
+
+  document.body.appendChild(finalScreen);
+}
+
 
 
 
