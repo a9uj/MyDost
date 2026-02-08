@@ -107,8 +107,13 @@
 }
 
   </style>
-</head>
 
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+</head>
+<audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
 <body>
 
   <!-- Screen 1 -->
@@ -145,94 +150,86 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
 
+  const music = document.getElementById("bgMusic");
+
+  /* ---------- SCREEN NAV ---------- */
   window.next = function(num) {
     document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
     document.getElementById("screen" + num).classList.remove("hidden");
+
+    // start soft music when entering screen 2
+    if (num === 2 && music) {
+      music.volume = 0.18;
+      music.play().catch(()=>{});
+    }
   }
 
+
+  /* ---------- YES CLICK (CONFETTI + CUTE ENDING) ---------- */
   window.yesClicked = function() {
-    document.body.innerHTML = `
-      <div style="
-        height:100vh;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-family:sans-serif;
-        background:#fff8f6;
-        text-align:center;
-      ">
-        <div>
-          <h1>Yayyy 🤍</h1>
-          <p>I knew you were the best human and a lifelong freind ever.</p>
-          <p> iMessage me when you see this 😊</p>
-          <p> Only for You !!! Can you decode ?</p>
-          <div class="poem">
 
-  We’ve had our <span class="song">Good Days</span> 🌤️  
-  and our <span class="song">Falling</span> days 🍂  
-  late-night <span class="song">3:15 (breathe)</span> talks 🌙  
-  and moments that felt like <span class="song">Hell N Back</span>  
+    if (music) {
+      music.volume = 0.35; // slightly louder happy moment
+    }
 
-  <br><br>
+    // 🎉 confetti rain
+    const duration = 1800;
+    const end = Date.now() + duration;
 
-  But through everything…  
-  you’ve always been my <span class="song">Sweater Weather</span> 🧣  
-  the friend who makes life lighter  
+    (function frame() {
+      confetti({
+        particleCount: 7,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
 
-  <br><br>
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
 
-  <span class="song">Midnight City</span> drives 🚗  
-  <span class="song">Dancing in the Moonlight</span> ✨  
-  laughing like <span class="song">8TEEN</span> kids  
-  fixing each other’s <span class="song">BAD HABIT</span>  
-
-  <br><br>
-
-  Even when days felt  
-  <span class="song">Gone</span>  
-  like <span class="song">Nothing Burns Like the Cold</span> ❄️  
-  we still came back <span class="song">B2B</span>  
-
-  <br><br>
-
-  Our own little <span class="song">Jungle</span> 🌿  
-  our <span class="song">Love Tonight</span> vibes  
-  our <span class="song">Stolen Dance</span> memories  
-  tiny fights — <span class="song">Bitch, Don’t Kill My Vibe</span> 😤  
-
-  <br><br>
-
-  Because with you…  
-  <span class="song big">Music Sounds Better with You</span> 🎶  
-
-  <br><br>
-
-  You’re my <span class="song">Baby Girl</span>,  
-  my safe place, my constant 🤍  
-
-  <br><br>
-
-  And I’m really sorry…  
-  can we be okay again? 🥺
-
-</div>
-
+    // show ending after confetti
+    setTimeout(() => {
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          flex-direction:column;
+          font-family:sans-serif;
+          background:linear-gradient(135deg,#fff8f6,#ffecec);
+          text-align:center;
+          padding:30px;
+        ">
+          <h1 style="font-size:30px;">Yayyyy 🤍✨</h1>
+          <p>I knew you’d forgive me 🥺</p>
+          <p style="opacity:.7">iMessage me when you see this 💌</p>
+          <p style="margin-top:20px;font-size:13px;opacity:.5">
+            PS: you can never say no anyway 😌
+          </p>
         </div>
-      </div>
-    `;
+      `;
+    }, 1500);
   }
 
+
+  /* ---------- FLOATING NO BUTTON (MOUSE + TOUCH) ---------- */
   const noBtn = document.getElementById("noBtn");
 
-  noBtn.addEventListener("mouseover", () => {
-    const x = Math.random() * 250;
-    const y = Math.random() * 200;
+  function moveNo() {
+    const x = Math.random() * 220;
+    const y = Math.random() * 160;
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
-  });
+  }
+
+  noBtn.addEventListener("mouseover", moveNo);
+  noBtn.addEventListener("touchstart", moveNo); // mobile support
 
 });
 </script>
+
 
 </body>
 </html>
