@@ -149,14 +149,17 @@
 
 
 <script>
-  <script>
 document.addEventListener("DOMContentLoaded", function() {
 
   const music = document.getElementById("bgMusic");
+  let musicStarted = false;
 
-  /* ---------- AUTO MUSIC FADE-IN ON FIRST TAP ---------- */
-  function fadeInMusic() {
-    if (!music) return;
+
+  /* ---------- START MUSIC SAFELY ---------- */
+  function startMusicOnce() {
+    if (!music || musicStarted) return;
+
+    musicStarted = true;
 
     music.muted = false;
     music.volume = 0;
@@ -171,29 +174,26 @@ document.addEventListener("DOMContentLoaded", function() {
         music.volume = vol;
       }
     }, 60);
-
-    document.removeEventListener("click", fadeInMusic);
   }
-
-  // first interaction triggers sound
-  document.addEventListener("click", fadeInMusic);
-
 
 
   /* ---------- SCREEN NAV ---------- */
   window.next = function(num) {
+
+    // start music on first navigation click
+    startMusicOnce();
+
     document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
     document.getElementById("screen" + num).classList.remove("hidden");
   }
 
 
 
-  /* ---------- YES CLICK (CONFETTI + ENDING) ---------- */
+  /* ---------- YES CLICK ---------- */
   window.yesClicked = function() {
 
-    if (music) music.volume = 0.35; // happy boost
+    if (music) music.volume = 0.35;
 
-    // 🎉 confetti rain
     const duration = 1800;
     const end = Date.now() + duration;
 
@@ -223,9 +223,6 @@ document.addEventListener("DOMContentLoaded", function() {
           <h1 style="font-size:30px;">Yayyyy 🤍✨</h1>
           <p>I knew you’d forgive me 🥺</p>
           <p style="opacity:.7">iMessage me when you see this 💌</p>
-          <p style="margin-top:20px;font-size:13px;opacity:.5">
-            PS: you can never say no anyway 😌
-          </p>
         </div>
       `;
     }, 1500);
@@ -248,6 +245,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 </script>
+
 
 
 </body>
