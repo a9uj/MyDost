@@ -16,16 +16,12 @@
   z-index: 0;
 }
 
-/* each cat */
 .cat {
   position: absolute;
-  width: 42px;
-
-  opacity: 0.45;              /* more visible */
-  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15)); /* depth */
+  font-size: 28px;
+  opacity: 0.35;
   animation: floatCat linear infinite;
-
-  pointer-events: none;
+  user-select: none;
 }
 
 @keyframes floatCat {
@@ -36,6 +32,7 @@
     transform: translateY(-20vh) rotate(360deg);
   }
 }
+
 
 
     .memory-card {
@@ -344,20 +341,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
 /* ---------- SPAWN FLOATING CATS ---------- */
 
+/* ---------- FLOATING EMOJI CATS ---------- */
+
 const catBg = document.querySelector(".cat-bg");
-const catImages = ["cat1.jpeg", "cat2.jpg", "cat3.jpg","cat4.jpg"];
+const emojis = ["🐱", "🐾", "🤍", "✨"]; // mix for cuteness
 
-for (let i = 0; i < 10; i++) {
-  const img = document.createElement("img");
-  img.src = catImages[Math.floor(Math.random() * catImages.length)];
-  img.className = "cat";
+for (let i = 0; i < 14; i++) {
+  const el = document.createElement("div");
+  el.className = "cat";
+  el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
-  img.style.left = Math.random() * 100 + "vw";
-  img.style.animationDuration = (10 + Math.random() * 10) + "s";
-  img.style.animationDelay = Math.random() * 10 + "s";
+  el.style.left = Math.random() * 100 + "vw";
+  el.style.animationDuration = (12 + Math.random() * 10) + "s";
+  el.style.animationDelay = Math.random() * 10 + "s";
 
-  catBg.appendChild(img);
+  catBg.appendChild(el);
 }
+
 
 </script>
 
