@@ -6,6 +6,33 @@
   <title>For you 🤍</title>
 
   <style>
+  /* ---------- FLOATING CATS BACKGROUND ---------- */
+
+.cat-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* each cat */
+.cat {
+  position: absolute;
+  width: 40px;
+  opacity: 0.18;
+  animation: floatCat linear infinite;
+}
+
+@keyframes floatCat {
+  from {
+    transform: translateY(110vh) rotate(0deg);
+  }
+  to {
+    transform: translateY(-20vh) rotate(360deg);
+  }
+}
+
 
     .memory-card {
   margin-top: 25px;
@@ -147,6 +174,7 @@
 </audio>
 
 <body>
+  <div class="cat-bg"></div>
 
   <!-- Screen 1 -->
   <div class="card" id="screen1">
@@ -309,6 +337,24 @@ document.addEventListener("DOMContentLoaded", function() {
   noBtn.addEventListener("touchstart", moveNo);
 
 });
+
+/* ---------- SPAWN FLOATING CATS ---------- */
+
+const catBg = document.querySelector(".cat-bg");
+const catImages = ["cat1.jpeg", "cat2.jpg", "cat3.jpg","cat4.jpg"];
+
+for (let i = 0; i < 10; i++) {
+  const img = document.createElement("img");
+  img.src = catImages[Math.floor(Math.random() * catImages.length)];
+  img.className = "cat";
+
+  img.style.left = Math.random() * 100 + "vw";
+  img.style.animationDuration = (10 + Math.random() * 10) + "s";
+  img.style.animationDelay = Math.random() * 10 + "s";
+
+  catBg.appendChild(img);
+}
+
 </script>
 
 
