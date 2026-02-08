@@ -75,6 +75,37 @@
       from {opacity:0; transform: translateY(15px);}
       to {opacity:1; transform: translateY(0);}
     }
+
+    .poem {
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.9;
+  color: #444;
+  white-space: pre-line;
+}
+
+/* Song titles */
+.song {
+  font-weight: 700;
+  display: inline-block;
+  color: #ff7a7a;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+/* Bigger emphasis line */
+.song.big {
+  font-size: 16px;
+}
+
+/* Cute floating jitter animation */
+@keyframes float {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  25%  { transform: translateY(-2px) rotate(-1deg); }
+  50%  { transform: translateY(0px) rotate(1deg); }
+  75%  { transform: translateY(-1px) rotate(-1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
   </style>
 </head>
 
@@ -135,13 +166,57 @@ document.addEventListener("DOMContentLoaded", function() {
           <p>I knew you were the best human and a lifelong freind ever.</p>
           <p> iMessage me when you see this 😊</p>
           <p> Only for You !!! Can you decode ?</p>
-          <p>We’ve had “Good Days” and “Falling” days, late-night “3:15 (breathe)” talks, and moments that felt like “Hell N Back”, but through everything you’ve always been my “Sweater Weather” - the friend who makes life lighter.
+          <div class="poem">
 
-From “Midnight City” drives to “Dancing in the Moonlight”, from laughing like “8TEEN” kids to fixing each other’s “BAD HABIT”, we’ve stayed “HONEST” even when things got tough. Some days felt “Gone” or like “Nothing Burns Like the Cold”, but we always bounced back “B2B”.
+  We’ve had our <span class="song">Good Days</span> 🌤️  
+  and our <span class="song">Falling</span> days 🍂  
+  late-night <span class="song">3:15 (breathe)</span> talks 🌙  
+  and moments that felt like <span class="song">Hell N Back</span>  
 
-We survived our own “Jungle”, had our “Love Tonight” vibes, our “Stolen Dance” memories, our little fights (“Bitch, Don’t Kill My Vibe”), but we always found our way. Because with you, “Music Sounds Better with You” - it always has.
+  <br><br>
 
-You’re my “Baby Girl”, my constant, my safe place, and no matter where life takes us, a part of you will always be “Mine” - my friend, my favorite person, my “Desire” to protect and support always.</p>
+  But through everything…  
+  you’ve always been my <span class="song">Sweater Weather</span> 🧣  
+  the friend who makes life lighter  
+
+  <br><br>
+
+  <span class="song">Midnight City</span> drives 🚗  
+  <span class="song">Dancing in the Moonlight</span> ✨  
+  laughing like <span class="song">8TEEN</span> kids  
+  fixing each other’s <span class="song">BAD HABIT</span>  
+
+  <br><br>
+
+  Even when days felt  
+  <span class="song">Gone</span>  
+  like <span class="song">Nothing Burns Like the Cold</span> ❄️  
+  we still came back <span class="song">B2B</span>  
+
+  <br><br>
+
+  Our own little <span class="song">Jungle</span> 🌿  
+  our <span class="song">Love Tonight</span> vibes  
+  our <span class="song">Stolen Dance</span> memories  
+  tiny fights — <span class="song">Bitch, Don’t Kill My Vibe</span> 😤  
+
+  <br><br>
+
+  Because with you…  
+  <span class="song big">Music Sounds Better with You</span> 🎶  
+
+  <br><br>
+
+  You’re my <span class="song">Baby Girl</span>,  
+  my safe place, my constant 🤍  
+
+  <br><br>
+
+  And I’m really sorry…  
+  can we be okay again? 🥺
+
+</div>
+
         </div>
       </div>
     `;
