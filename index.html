@@ -10,18 +10,25 @@
   /* ---------- ENVELOPE ---------- */
 
 .envelope {
-  width: 220px;
-  height: 140px;
+  width: clamp(240px, 40vw, 420px);
+  height: clamp(150px, 25vw, 260px);
+
   background: #ff8f8f;
-  border-radius: 12px;
+  border-radius: 18px;
   position: relative;
   cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+
   overflow: hidden;
+
+  transition: transform 0.3s ease;
 }
+
 
 .flap {
   position: absolute;
