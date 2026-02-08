@@ -111,9 +111,10 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   
 </head>
-<audio id="bgMusic" loop>
+<audio id="bgMusic" autoplay loop muted playsinline preload="auto">
   <source src="song.mp3" type="audio/mpeg">
 </audio>
+
 <body>
 
   <!-- Screen 1 -->
@@ -148,29 +149,49 @@
 
 
 <script>
+  <script>
 document.addEventListener("DOMContentLoaded", function() {
 
   const music = document.getElementById("bgMusic");
+
+  /* ---------- AUTO MUSIC FADE-IN ON FIRST TAP ---------- */
+  function fadeInMusic() {
+    if (!music) return;
+
+    music.muted = false;
+    music.volume = 0;
+
+    let vol = 0;
+    const fade = setInterval(() => {
+      vol += 0.03;
+      if (vol >= 0.18) {
+        music.volume = 0.18;
+        clearInterval(fade);
+      } else {
+        music.volume = vol;
+      }
+    }, 60);
+
+    document.removeEventListener("click", fadeInMusic);
+  }
+
+  // first interaction triggers sound
+  document.addEventListener("click", fadeInMusic);
+
+
 
   /* ---------- SCREEN NAV ---------- */
   window.next = function(num) {
     document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
     document.getElementById("screen" + num).classList.remove("hidden");
-
-    // start soft music when entering screen 2
-    if (num === 2 && music) {
-      music.volume = 0.18;
-      music.play().catch(()=>{});
-    }
   }
 
 
-  /* ---------- YES CLICK (CONFETTI + CUTE ENDING) ---------- */
+
+  /* ---------- YES CLICK (CONFETTI + ENDING) ---------- */
   window.yesClicked = function() {
 
-    if (music) {
-      music.volume = 0.35; // slightly louder happy moment
-    }
+    if (music) music.volume = 0.35; // happy boost
 
     // 🎉 confetti rain
     const duration = 1800;
@@ -183,12 +204,9 @@ document.addEventListener("DOMContentLoaded", function() {
         origin: { y: 0.6 }
       });
 
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
-      }
+      if (Date.now() < end) requestAnimationFrame(frame);
     })();
 
-    // show ending after confetti
     setTimeout(() => {
       document.body.innerHTML = `
         <div style="
@@ -214,7 +232,8 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 
-  /* ---------- FLOATING NO BUTTON (MOUSE + TOUCH) ---------- */
+
+  /* ---------- FLOATING NO BUTTON ---------- */
   const noBtn = document.getElementById("noBtn");
 
   function moveNo() {
@@ -225,7 +244,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   noBtn.addEventListener("mouseover", moveNo);
-  noBtn.addEventListener("touchstart", moveNo); // mobile support
+  noBtn.addEventListener("touchstart", moveNo);
 
 });
 </script>
