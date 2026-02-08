@@ -288,23 +288,7 @@
 
   <div class="message-scroll">
 
-    <p>
-      Things got messy between us…<br><br>
-
-      Maybe I messed up. Maybe I didn’t understand you enough.<br><br>
-
-      But hurting you was never my intention.<br><br>
-
-      I’m really sorry & I really wanna fix things up more maturely.<br><br>
-
-      I know things have been tough for you and you are trying to process things.<br>
-      It will take time to regrow and I support you my friend(Dost).<br>
-      Tumko melt karne ka plan nai hai, it just tumhari dosti ki value bohooooot zaada hai lodu.<br><br>
-      Marne ke baad tumhare liye flowers v toh chadhane hai :)<br>
-      Sorry ! Chutiya ho tum !!<br>
-      Nerdyyyy Bitch.<br><br>
-      I am just a ping away, whenever you are ready.
-    </p>
+    <div id="typedMessage"></div>
 
   </div>
 
@@ -352,16 +336,67 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 60);
   }
 
+  //Typewriter
+  /* ---------- TYPEWRITER ---------- */
 
+function typeWriter() {
+
+  const text = `
+Things got messy between us…
+
+Maybe I messed up.
+Maybe I didn’t understand you enough.
+
+But hurting you was never my intention.
+
+I’m really sorry & I really wanna fix things up more maturely.
+
+I know things have been tough for you and you are trying to process things.
+It will take time to regrow and I support you my friend (Dost).
+
+Tumko melt karne ka plan nai hai, it just tumhari dosti ki value bohooooot zaada hai lodu.
+
+Marne ke baad tumhare liye flowers v toh chadhane hai :)
+
+Sorry ! Chutiya ho tum !!
+Nerdyyyy Bitch.
+
+I am just a ping away, whenever you are ready 🤍
+`;
+
+  const el = document.getElementById("typedMessage");
+  if (!el) return;
+
+  el.textContent = "";
+
+  let i = 0;
+
+  function typing() {
+    if (i < text.length) {
+      el.textContent += text[i++];
+      el.parentElement.scrollTop = el.parentElement.scrollHeight;
+      setTimeout(typing, 18);
+    }
+  }
+
+  typing();
+}
+
+
+  
   /* ---------- SCREEN NAV ---------- */
   window.next = function(num) {
 
-    // start music on first navigation click
-    startMusicOnce();
+  startMusicOnce();
 
-    document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
-    document.getElementById("screen" + num).classList.remove("hidden");
+  document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
+  document.getElementById("screen" + num).classList.remove("hidden");
+
+  if (num === 2) {
+    setTimeout(typeWriter, 300);
   }
+}
+
 
 
 
