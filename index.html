@@ -431,6 +431,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     </div>
   </div>
+  <button class="primary" onclick="sendReply()">
+    Reply kar deti hu 😂
+  </button>
 `;
 
 
@@ -508,7 +511,19 @@ window.openLetter = function() {
     next(2);
   }, 900);
 }
+// To send email
+window.sendReply = function() {
 
+  const email = "yashikaguleria126539@gmail.com"; // 👈 PUT HER EMAIL HERE
+
+  const subject = encodeURIComponent("Re: Dostuuu 💛");
+
+  const body = encodeURIComponent(
+    "Dramatic idiot😒 \nChalo ab coffee pe milte hai."
+  );
+
+  window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+}
 
 
 </script>
