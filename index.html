@@ -398,7 +398,7 @@ whenever you’re ready 🤍
     if (i < text.length) {
       el.textContent += text[i++];
       el.parentElement.scrollTop = el.parentElement.scrollHeight;
-      setTimeout(typing, 40);
+      setTimeout(typing, 60);
     }
   }
 
@@ -545,7 +545,7 @@ for (let i = 0; i < 14; i++) {
   el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
 
   el.style.left = Math.random() * 100 + "vw";
-  el.style.animationDuration = (12 + Math.random() * 10) + "s";
+  el.style.animationDuration = (6 + Math.random() * 10) + "s";
   el.style.animationDelay = Math.random() * 10 + "s";
 
   catBg.appendChild(el);
